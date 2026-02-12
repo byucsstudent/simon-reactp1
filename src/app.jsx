@@ -8,13 +8,15 @@ import { Scores } from './scores/scores';
 import { About } from './about/about';
 
 export default function App() {
+  const [user, setUser] = React.useState(null);
+
   return (
     <BrowserRouter>
       <div className="body bg-dark text-light">
         <header className="container-fluid">
           <nav className="navbar fixed-top navbar-dark">
             <div className="navbar-brand">
-              Simon<sup>&reg;</sup>
+              Simon<sup>&reg;</sup> - {user ? `Welcome, ${user.email}` : 'Please log in'}
             </div>
             <menu className="navbar-nav">
               <li className="nav-item">
@@ -42,7 +44,7 @@ export default function App() {
         </header>
 
         <Routes>
-          <Route path="/" element={<Login />} exact />
+          <Route path="/" element={<Login setUser={setUser} />} exact />
           <Route path="/play" element={<Play />} />
           <Route path="/scores" element={<Scores />} />
           <Route path="/about" element={<About />} />
